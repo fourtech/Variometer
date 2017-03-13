@@ -1,0 +1,9 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoInfoArea">true</item>
+    </style>
+
+</resources>

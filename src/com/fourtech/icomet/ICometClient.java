@@ -294,6 +294,7 @@ public class ICometClient {
 	/**
 	 * 心跳线程
 	 */
+	@SuppressWarnings("unused")
 	private class NoopThread extends Thread {
 		int seq = 0;
 

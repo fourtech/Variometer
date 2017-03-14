@@ -43,6 +43,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private Button mAddBtn;
 	private Button mMinusBtn;
+	private Button mMillMinusBtn;
 	private AltimeterView mAltimeterView;
 	private ICometClient mClient;
 	private String mToken;
@@ -55,9 +56,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		mAddBtn = (Button) findViewById(R.id.btn_add);
 		mMinusBtn = (Button) findViewById(R.id.btn_minus);
+		mMillMinusBtn = (Button) findViewById(R.id.btn_mill_minus);
 		mAltimeterView = (AltimeterView) findViewById(R.id.altimeterView);
 		mAddBtn.setOnClickListener(this);
 		mMinusBtn.setOnClickListener(this);
+		mMillMinusBtn.setOnClickListener(this);
 
 		HandlerThread t = new HandlerThread(TAG);
 		t.start();
@@ -99,10 +102,19 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		float ratio = mAltimeterView.getRatio();
 		if (v == mAddBtn) {
-			mAltimeterView.setRatio(mAltimeterView.getRatio() + 10.0f);
+			int n = (int) ratio / 10;
+			ratio = (n + 1) * 10.0f;
+			if (ratio < 10.0f) ratio = 10.0f;
+			mAltimeterView.setRatio(ratio);
 		} else if (v == mMinusBtn) {
-			mAltimeterView.setRatio(mAltimeterView.getRatio() - 10.0f);
+			int n = (int) ratio / 10;
+			ratio = (n - 1) * 10.0f;
+			if (ratio < 10.0f) ratio = 10.0f;
+			mAltimeterView.setRatio(ratio);
+		} else if (v == mMillMinusBtn) {
+			mAltimeterView.setRatio(mAltimeterView.getRatio() - 1.0f);
 		}
 	}
 
